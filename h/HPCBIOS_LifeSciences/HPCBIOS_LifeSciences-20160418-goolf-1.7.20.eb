@@ -1,0 +1,34 @@
+##
+# This file is an EasyBuild reciPY as per https://github.com/hpcugent/easybuild
+#
+# Copyright:: Copyright 2016 The Cyprus Institute
+# Authors::   Thekla Loizou <t.loizou@cyi.ac.cy>
+# License::   MIT/GPL
+# $Id$
+#
+# This work implements a part of the HPCBIOS project and is a component of the policy:
+# http://hpcbios.readthedocs.org/en/latest/HPCBIOS_2012-93.html
+##
+
+easyblock = "Bundle"
+
+name = 'HPCBIOS_LifeSciences'
+version = '20160418'
+
+homepage = 'http://hpcbios.readthedocs.org/en/latest/HPCBIOS_2012-93.html'
+description = """Life Sciences productivity environment includes a set of HPC tools,
+ which are needed for scientific computing and visualization in the respective domain."""
+
+toolchain = {'name': 'goolf', 'version': '1.7.20'}  # ie. build against the GNU compilers & OpenMPI stack
+
+dependencies = [
+    ('BLAST+', '2.2.28', '-Python-2.7.3'),
+    ('BWA', '0.7.13'),
+    ('ClustalW2', '2.1'),
+    ('GROMACS', '4.6.5', '-hybrid'),
+    ('HMMER', '3.1b2'),
+    ('MrBayes', '3.2.5'),
+    ('mpiBLAST', '1.6.0'),
+]
+
+moduleclass = 'bio'
