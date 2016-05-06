@@ -1,0 +1,64 @@
+--- FERRET/fer/platform_specific_flags.mk.x86_64-linux.orig	2016-04-27 12:33:18.492702606 +0300
++++ FERRET/fer/platform_specific_flags.mk.x86_64-linux	2016-04-27 12:37:18.704136872 +0300
+@@ -11,7 +11,7 @@
+ 
+ 	INCLUDES        = -I. \
+ 			  -I../fmt/cmn/ \
+-			  -I$(NETCDF4_DIR)/include \
++			  -I$(EBROOTNETCDFMINFORTRAN)/include \
+ 			  -I$(READLINE_DIR)/include \
+ 			  -I../common \
+ 			  -I../../fmt/cmn \
+@@ -73,9 +73,9 @@
+ 	LDFLAGS		= -v --verbose -m64 -fPIC -export-dynamic
+ 
+ 	SYSLIB		= -lX11 \
+-			  -lcurl \
++                          $(EBROOTCURL)/lib/libcurl.so \
+ 			  -ldl \
+-			  $(LIBZ_DIR)/lib64/libz.a \
++                          $(EBROOTZLIB)/lib/libz.a \
+ 			  -Wl,-Bstatic -lgfortran -Wl,-Bdynamic \
+ 			  -lm
+ 
+@@ -88,11 +88,11 @@
+ 
+ # For netCDF4 using new hdf5 and new zlib
+ 
+-	CDFLIB		= $(NETCDF4_DIR)/lib64/libnetcdff.a \
+-			  $(NETCDF4_DIR)/lib64/libnetcdf.a \
+-			  $(HDF5_DIR)/lib64/libhdf5_hl.a \
+-			  $(HDF5_DIR)/lib64/libhdf5.a \
+-			  $(LIBZ_DIR)/lib64/libz.a
++	CDFLIB		= $(EBROOTNETCDFMINFORTRAN)/lib/libnetcdff.a \
++			  $(NETCDF4_DIR)/lib/libnetcdf.a \
++			  $(HDF5_DIR)/lib/libhdf5_hl.so \
++			  $(HDF5_DIR)/lib/libhdf5.so \
++			  $(EBROOTZLIB)/lib/libz.a
+ 
+ 	LINUX_OBJS	= special/linux_routines.o \
+ 			  dat/*.o \
+@@ -104,10 +104,10 @@
+ # builds.
+ # (But use the system ncurses.so.5 for running.)
+ 
+-	TERMCAPLIB	= -L/usr/local/lib64 -lncurses
++	TERMCAPLIB	= -L$(EBROOTNCURSES)/lib -lncurses
+ 
+-	READLINELIB	= $(READLINE_DIR)/lib64/libreadline.a \
+-			  $(READLINE_DIR)/lib64/libhistory.a
++	READLINELIB	= $(EBROOTLIBREADLINE)/lib/libreadline.a \
++			  $(EBROOTLIBREADLINE)/lib/libhistory.a
+ 
+ # cancel the default rule for .f -> .o to prevent objects from being built
+ # from .f files that are out-of-date with respect to their corresponding .F file
+--- FERRET/site_specific.mk.orig2	2016-04-27 12:37:58.221537500 +0300
++++ FERRET/site_specific.mk	2016-04-27 12:38:13.334690448 +0300
+@@ -57,6 +57,6 @@
+ # JAVA_HOME	= /usr/java/latest
+ # JAVA_HOME	= /usr/lib/jvm/java-1.6.0-sun
+ # JAVA_HOME	= /usr/lib/jvm/java-6-sun
+-JAVA_HOME	= /usr/lib/jvm/java-sun
++JAVA_HOME	= $(EBROOTJAVA)
+ 
+ ##

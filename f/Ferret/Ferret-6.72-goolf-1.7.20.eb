@@ -1,0 +1,40 @@
+##
+# This file is an EasyBuild reciPY as per https://github.com/hpcugent/easybuild
+#
+# Copyright:: Copyright 2016 The Cyprus Institute
+# Authors::   Thekla Loizou <t.loizou@cyi.ac.cy>
+# License::   MIT/GPL
+# $Id$
+##
+
+name = 'Ferret'
+version = '6.72'
+
+homepage = 'http://ferret.pmel.noaa.gov/'
+description = """Ferret is an interactive computer visualization and analysis environment
+designed to meet the needs of oceanographers and meteorologists analyzing large and complex gridded data sets."""
+
+toolchain = {'name': 'goolf', 'version': '1.7.20'}
+toolchainopts = {'usempi': True}
+
+sources = ['fer_source.v%s.tar.gz' % ''.join(version.split('.'))]
+source_urls = ['ftp://ftp.pmel.noaa.gov/ferret/pub/source']
+
+dependencies = [
+    ('netCDF', '4.2.1.1'),
+    ('netCDF-Fortran', '4.2'),
+    ('zlib', '1.2.8'),
+    ('Szip', '2.1'),
+    ('cURL', '7.43.0'),
+    ('ncurses', '5.9'),
+    ('libreadline', '6.3'),
+    ('Java', '1.8.0_31', '', True),
+]
+
+parallel = 1
+
+patches = ['Ferret-6.72-goolf-1.7.20-lib.patch']
+
+buildopts = 'LD="$CC"'
+
+moduleclass = 'vis'

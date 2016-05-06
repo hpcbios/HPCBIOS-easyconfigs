@@ -1,0 +1,25 @@
+easyblock = 'ConfigureMake'
+
+name = 'nco'
+version = '4.5.2'
+
+homepage = 'http://dust.ess.uci.edu/nco/'
+description = """NCO manipulates data stored in netCDF format. It also exploits the geophysical 
+  expressivity of many CF (Climate & Forecast) metadata conventions, the flexible description of 
+  physical dimensions translated by UDUnits, the network transparency of OPeNDAP, the storage 
+  features (e.g., compression, chunking, groups) of HDF (the Hierarchical Data Format), and many 
+  powerful mathematical and statistical algorithms of GSL (the GNU Scientific Library)"""
+
+toolchain = {'name': 'goolf', 'version': '1.7.20'}
+toolchainopts = {'pic': True}
+
+sources = [SOURCELOWER_TAR_GZ]
+source_urls = ['http://dust.ess.uci.edu/nco/src']
+
+dependencies = [
+                ('netCDF', '4.2.1.1'),
+		('Bison', '2.7'),
+		('flex', '2.5.37'),
+               ]
+
+moduleclass = 'data'

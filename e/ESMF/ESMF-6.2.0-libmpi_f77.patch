@@ -1,0 +1,11 @@
+--- esmf/build_config/Linux.gfortran.default/build_rules.mk.orig	2016-05-05 11:09:56.335716570 +0300
++++ esmf/build_config/Linux.gfortran.default/build_rules.mk	2016-05-05 11:10:11.041918471 +0300
+@@ -70,7 +70,7 @@
+ ESMF_F90DEFAULT         = mpif90
+ ESMF_F90LINKLIBS       += -lmpi_cxx
+ ESMF_CXXDEFAULT         = mpicxx
+-ESMF_CXXLINKLIBS       += -lmpi_f77
++ESMF_CXXLINKLIBS       += -lmpi
+ ESMF_MPIRUNDEFAULT      = mpirun $(ESMF_MPILAUNCHOPTIONS)
+ ESMF_MPIMPMDRUNDEFAULT  = mpiexec $(ESMF_MPILAUNCHOPTIONS)
+ else

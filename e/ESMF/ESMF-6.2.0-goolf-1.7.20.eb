@@ -1,0 +1,31 @@
+##
+# This file is an EasyBuild reciPY as per https://github.com/hpcugent/easybuild
+#
+# Copyright:: Copyright 2016 The Cyprus Institute
+# Authors::   Thekla Loizou <t.loizou@cyi.ac.cy>
+# License::   MIT/GPL
+# $Id$
+##
+
+name = 'ESMF'
+version = '6.2.0'
+
+homepage = 'http://sourceforge.net/projects/esmf'
+description = """The Earth System Modeling Framework (ESMF) is software for building 
+and coupling weather, climate, and related models."""
+
+toolchain = {'name': 'goolf', 'version': '1.7.20'}
+toolchainopts = {'usempi': True}
+
+source_urls = [SOURCEFORGE_SOURCE]
+sources = ['%s_%s_src.tar.gz' % (name.lower(), '_'.join(version.split('.')))]
+
+patches = ['ESMF-6.2.0-libmpi_f77.patch']
+
+dependencies = [
+    ('netCDF', '4.2.1.1'),
+    ('netCDF-Fortran', '4.2'),
+    ('netCDF-C++', '4.2'),
+]
+
+moduleclass = 'geo'
