@@ -1,0 +1,40 @@
+##
+# This file is an EasyBuild reciPY as per https://github.com/hpcugent/easybuild
+#
+# Copyright:: Copyright 2016 The Cyprus Institute
+# Authors::   Thekla Loizou <t.loizou@cyi.ac.cy>
+# License::   MIT/GPL
+# $Id$
+#
+# This work implements a part of the HPCBIOS project and is a component of the policy:
+# http://hpcbios.readthedocs.io/en/latest/HPCBIOS_2012-97.html 
+##
+
+easyblock = "Bundle"
+
+name = 'HPCBIOS_Climate-extended'
+version = '20160506'
+
+homepage = 'http://hpcbios.readthedocs.io/en/latest/HPCBIOS_2012-97.html'
+description = """Climate Science productivity environment includes a set of tools which 
+are needed for scientific computing and visualisation in the respective domain"""
+
+toolchain = {'name': 'goolf', 'version': '1.7.20'}  # ie. build against the GNU compilers & OpenMPI stack
+
+dependencies = [
+    ('Ferret', '6.72'),
+    ('NCL', '6.0.0'),
+    ('nco', '4.5.2'),
+    ('UDUNITS', '2.1.24'),
+    ('CDO', '1.7.0'),
+    ('Python', '2.7.3'),
+    ('h4toh5', '2.2.2', '-linux-x86_64-static'),
+    ('WRF', '3.5', '-dmpar'),
+    ('OpenFOAM', '2.3.0', '-bugfix1'),
+    ('ParaView', '4.1.0'), 
+    ('VTK', '5.10.1'),
+    ('gnuplot', '4.6.0'),
+    ('ncview', '2.1.2'),
+]
+
+moduleclass = 'geo'
