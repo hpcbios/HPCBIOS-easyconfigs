@@ -1,0 +1,33 @@
+# This file is an EasyBuild reciPY as per https://github.com/hpcugent/easybuild
+# Author: Thekla Loizou
+# The Cyprus Institute
+easyblock = 'MakeCp'
+
+name = "gvcftools"
+version = "0.16"
+
+homepage = 'https://sites.google.com/site/gvcftools/home'
+description = """gvcftools is a set of utilities to help create and analyze Genome VCF 
+(gVCF) files. gVCF are VCF 4.1 files which follow a set of conventions for representing all 
+sites in the genome"""
+
+toolchain = {'name': 'goolf', 'version': '1.7.20'}
+
+source_urls = ['https://sites.google.com/site/gvcftools/home/download']
+sources = [ SOURCE_TAR_GZ ]
+
+dependencies = [ 
+    ('zlib', '1.2.8'),
+]
+
+files_to_copy = ["bin"]
+
+sanity_check_paths = {
+    'files': ["bin/%s" % x for x in ["break_blocks", "extract_variants", "gatk_to_gvcf",
+                                     "getBamAvgChromDepth.pl", "get_called_regions", 
+                                     "merge_variants", "remove_region", "set_haploid_region",
+                                     "trio", "twins"]],
+    'dirs': []
+}
+
+moduleclass = 'bio'
