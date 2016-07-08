@@ -1,3 +1,5 @@
+easyblock = 'ConfigureMake'
+
 name = 'Sambamba'
 version = '0.6.0'
 
